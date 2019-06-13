@@ -1,0 +1,88 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <name>database</name>
+    <description>myproject.com - Database</description>
+    <groupId>com.myproject</groupId>
+    <artifactId>database</artifactId>
+    <packaging>pom</packaging>
+    <version>0.1-SNAPSHOT</version>
+    <url>http://www.myproject.com</url>
+  
+    <properties>
+        <dbdeploy.version>3.0M3</dbdeploy.version>
+        <mysql.connector.version>5.1.18</mysql.connector.version>
+        <cglib.version>2.2.2</cglib.version>
+      
+        <dbdeploy.user>root</dbdeploy.user>
+        <dbdeploy.password>password</dbdeploy.password>
+    </properties>
+  
+    <profiles>
+        <profile>
+            <id>database-update</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.dbdeploy</groupId>
+                        <artifactId>maven-dbdeploy-plugin</artifactId>
+
+                        <configuration>
+                            <scriptdirectory>config/mysql/changes</scriptdirectory>
+                            <driver>com.mysql.jdbc.Driver</driver>
+                            <url>jdbc:mysql://localhost:3306/mydb</url>
+                            <userid>${dbdeploy.user}</userid>
+                            <password>${dbdeploy.password}</password>
+                            <dbms>mysql</dbms>
+                            <delimiter>;</delimiter>
+                            <delimiterType>row</delimiterType>
+                        </configuration>
+                        <inherited>false</inherited>
+                        <dependencies>
+                            <dependency>
+                                <groupId>mysql</groupId>
+                                <artifactId>mysql-connector-java</artifactId>
+                                <version>${mysql.connector.version}</version>
+                            </dependency>
+                        </dependencies>
+                        <executions>
+                            <execution>
+                                <phase>compile</phase>
+                                <goals>
+                                    <goal>update</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+  
+    <build>
+        <plugins>
+            <plugin>
+                        <groupId>com.dbdeploy</groupId>
+                        <artifactId>maven-dbdeploy-plugin</artifactId>
+                        <configuration>
+                            <scriptdirectory>config/mysql/changes</scriptdirectory>
+                            <driver>com.mysql.jdbc.Driver</driver>
+                            <url>jdbc:mysql://localhost:3306/mydb</url>
+                            <userid>${dbdeploy.user}</userid>
+                            <password>${dbdeploy.password}</password>
+                            <dbms>mysql</dbms>
+                            <delimiter>;</delimiter>
+                            <delimiterType>row</delimiterType>
+                        </configuration>
+                        <inherited>false</inherited>
+                        <dependencies>
+                            <dependency>
+                                <groupId>mysql</groupId>
+                                <artifactId>mysql-connector-java</artifactId>
+                                <version>${mysql.connector.version}</version>
+                            </dependency>
+                        </dependencies>
+            </plugin>
+        </plugins>
+    </build>
+</project>
