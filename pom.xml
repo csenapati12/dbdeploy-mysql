@@ -11,7 +11,7 @@
   
     <properties>
         <dbdeploy.version>3.0M3</dbdeploy.version>
-        <mysql.connector.version>5.1.18</mysql.connector.version>
+        <mysql.connector.version>8.0.16</mysql.connector.version>
         <cglib.version>2.2.2</cglib.version>
       
         <dbdeploy.user>root</dbdeploy.user>
