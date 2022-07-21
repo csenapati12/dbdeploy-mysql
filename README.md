@@ -1,1 +1,2 @@
 # dbdeploy-mysql
+autodelete testing
